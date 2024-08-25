@@ -29,6 +29,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/agg/functions' },
+            { text: 'qq', link: '/class/agg/qq' },
           ]
         }
       ]

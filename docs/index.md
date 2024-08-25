@@ -15,6 +15,7 @@ hero:
       link: https://github.com/AGameGuardian
 
 features:
+  - icon: 📜
   - title: 什么是AGG
     details: AGG是一款基于GG96.0版本的修改器
 ---

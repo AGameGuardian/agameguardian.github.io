@@ -142,26 +142,6 @@ gg.isVPN()
 gg.loadClass()
 ```
 
-## gg.login
-
-说明
-
-**例子**
-
-```lua
-gg.login()
-```
-
-## gg.logout
-
-说明
-
-**例子**
-
-```lua
-gg.logout()
-```
-
 ## gg.luaThread
 
 说明
