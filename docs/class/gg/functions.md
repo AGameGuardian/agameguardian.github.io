@@ -14,13 +14,51 @@ gg.addListItems()
 
 ## gg.alert
 
-说明
+```lua
+gg.alert(string text,
+         string positive = 'ok',
+         string negative = nil,
+         string neutral = nil
+         )
+```
+
+显示一个带有多个按钮的对话框。  
+返回结果取决于按下了哪个按钮。可以使用 “Back” 按钮（返回代码 0）取消对话框。
+
+|    参数    |         说明         |
+|:--------:|:------------------:|
+|   text   |        文本消息        |
+| positive | 确定按钮的文本。此按钮返回代码 1。 |
+| negative | 取消按钮的文本。此按钮返回代码 2。 |
+| neutral  | 中性按钮的文本。此按钮返回代码 3。 |
+
+如果对话框已取消 - 0, 否则：1 表示确定，2 表示取消，3 表示中性按钮。
 
 **例子**
 
-```lua
-gg.alert()
+::: code-group
+
+```lua [demo1.lua]
+gg.alert('Script ended')
 ```
+
+```lua [demo2.lua]
+gg.alert('Script ended', 'Yes')
+```
+
+```lua [demo3.lua]
+gg.alert('A or B?', 'A', 'B')
+```
+
+```lua [demo4.lua]
+gg.alert('A or C?', 'A', nil, 'C')
+```
+
+```lua [demo5.lua]
+gg.alert('A or B or C?', 'A', 'B', 'C')
+```
+
+:::
 
 ## gg.allocatePage
 
