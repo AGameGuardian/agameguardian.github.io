@@ -9,25 +9,26 @@ export default defineConfig({
       {
         text: '函数列表',
         items: [
-          { text: 'gg函数', link: '/func/gg/addListItems', activeMatch: "/func/gg/" },
-          { text: 'agg函数', link: '/func/agg/mainTabs', activeMatch: "/func/agg/" },
+          { text: 'gg', link: '/class/gg/functions', activeMatch: "/class/gg/" },
+          { text: 'agg', link: '/class/agg/functions', activeMatch: "/class/agg/" },
         ]
       },
     ],
     sidebar: {
-      '/func/': [
+      '/class/': [
         {
-          text: 'gg函数',
+          text: 'gg',
           collapsed: false,
           items: [
-            { text: 'addListItems', link: '/func/gg/addListItems' },
+            { text: 'functions', link: '/class/gg/functions' },
+            { text: 'variables', link: '/class/gg/variables' },
           ]
         },
         {
-          text: 'agg函数',
+          text: 'agg',
           collapsed: false,
           items: [
-            { text: 'mainTabs', link: '/func/agg/mainTabs' },
+            { text: 'functions', link: '/class/agg/functions' },
           ]
         }
       ]

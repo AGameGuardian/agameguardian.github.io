@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 函数列表
-      link: /func/gg/addListItems
+      link: /class/gg/functions
 
     - theme: alt
       text: Github
