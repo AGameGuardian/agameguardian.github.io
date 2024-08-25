@@ -23,7 +23,7 @@ export default defineConfig({
           items: [
             { text: 'AGG是什么？', link: '/class/快速了解/AGG是什么' },
             { text: '快速开始', link: '/class/快速了解/快速开始' },
-          ] 
+          ]
         },
         {
           text: 'gg文档',
