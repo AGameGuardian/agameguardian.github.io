@@ -6,18 +6,26 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
+      { text: '快速了解', link: '/class/快速了解'},
       {
         text: '函数列表',
         items: [
-          { text: 'gg', link: '/class/gg/functions', activeMatch: "/class/gg/" },
-          { text: 'agg', link: '/class/agg/functions', activeMatch: "/class/agg/" },
+          { text: 'gg文档', link: '/class/gg/functions', activeMatch: "/class/gg/" },
+          { text: 'agg文档', link: '/class/agg/functions', activeMatch: "/class/agg/" },
         ]
       },
     ],
     sidebar: {
       '/class/': [
         {
-          text: 'gg',
+          text: '了解',
+          collapsed: false,
+          items: [
+            { text: 'AGG是什么？', link: '/class/快速了解/AGG是什么' },
+          ]
+        },
+        {
+          text: 'gg文档',
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/gg/functions' },
@@ -25,11 +33,11 @@ export default defineConfig({
           ]
         },
         {
-          text: 'agg',
+          text: 'agg文档',
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/agg/functions' },
-            { text: 'qq', link: '/class/agg/qq' },
+            { text: 'QQ授权函数', link: '/class/agg/qq' },
           ]
         }
       ]
