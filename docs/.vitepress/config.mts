@@ -22,6 +22,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'AGG是什么？', link: '/class/快速了解/AGG是什么' },
+            { text: '快速开始', link: '/class/快速了解/快速开始' },
           ]
         },
         {
@@ -37,7 +38,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/agg/functions' },
-            { text: 'QQ授权函数', link: '/class/agg/qq' },
+            { text: 'QQ授权函数', link: '/class/agg/QQfunction' },
           ]
         }
       ]
