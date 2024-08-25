@@ -6,7 +6,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
-      { text: '快速了解', link: '/class/快速了解'},
+      { text: '快速了解', link: '/class/快速了解/AGG是什么'},
       {
         text: '函数列表',
         items: [
