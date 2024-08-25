@@ -16,6 +16,6 @@ hero:
 
 features:
   - icon: 📜
-  - title: 什么是AGG
+    title: 什么是AGG
     details: AGG是一款基于GG96.0版本的修改器
 ---
