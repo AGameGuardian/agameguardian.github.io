@@ -37,7 +37,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/agg/functions' },
-            { text: 'QQ授权函数', link: '/class/agg/qq' },
+            { text: 'QQ授权函数', link: '/class/agg/QQfunction' },
           ]
         }
       ]
