@@ -71,17 +71,20 @@ gg.addListItems(t)
 
 ## gg.alert
 
-显示一个带有多个按钮的对话框。  
-返回结果取决于按下了哪个按钮。可以使用 “Back” 按钮（返回代码 0）取消对话框。
+说明
 
-|    参数    |         说明         |
-|:--------:|:------------------:|
-|   text   |        文本消息        |
-| positive | 确定按钮的文本。此按钮返回代码 1。 |
-| negative | 取消按钮的文本。此按钮返回代码 2。 |
-| neutral  | 中性按钮的文本。此按钮返回代码 3。 |
+**参数**
+| 参数 | 说明 |
+|:----:|:--:|
+| text | Text message. |
+| positive | Text for positive button. This button return code 1. |
+| negative | Text for negative button. This button return code 2. |
+| neutral | Text for neutral button. This button return code 3. |
 
-如果对话框已取消 - 0, 否则：1 表示确定，2 表示取消，3 表示中性按钮。
+**返回**
+| 返回 | 说明 |
+|:----:|:--:|
+| demo | 示例 |
 
 ::: code-group
 
@@ -119,7 +122,8 @@ gg.alert('A or B or C?', 'A', 'B', 'C')
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| mode | Bit mask of flags PROT_*. |
+| address | If is not 0, then the kernel takes it as a hint about where to place the page; on Android, the page will be allocated at a nearby address page boundary. |
 
 **返回**
 | 返回 | 说明 |
@@ -151,7 +155,8 @@ print('allocatePage 5: ', string.format('0x%08x', gg.allocatePage(gg.PROT_READ |
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| text |  |
+| encoding | Possible values: 'ISO-8859-1', 'US-ASCII', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-8' |
 
 **返回**
 | 返回 | 说明 |
@@ -181,7 +186,9 @@ print('UTF-16', gg.bytes('example', 'UTF-16LE'))
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| items | Table with items for choice. |
+| selected | Is not specified or is specified as , then the list will be without the default choice. nil |
+| message | Specifies the optional title of the dialog box. |
 
 **返回**
 | 返回 | 说明 |
