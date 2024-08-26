@@ -23,7 +23,7 @@ function getFirstTenDigits(number)
 	return firstTen
 end
 
-local data = qq.login() -- 调用
+local data = qq.login() -- 调用 // [!code focus]
 local time = getFirstTenDigits(data.expiresIn)
 local datetime = os.date("%Y-%m-%d %H:%M:%S" , time)
 gg.alert("token过期时间"..datetime.."\n"..tostring(data))
