@@ -39,7 +39,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/agg/functions' },
-            { text: 'Lua调用java方法', link: '/class/agg/LoadJava' },
+            { text: 'Lua调用java方法', link: '/class/agg/loadJava' },
             { text: 'QQ授权函数', link: '/class/agg/QQfunction' },
           ]
         },
