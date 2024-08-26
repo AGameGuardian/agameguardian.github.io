@@ -39,9 +39,17 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'functions', link: '/class/agg/functions' },
+            { text: 'Lua调用java方法', link: '/class/agg/LoadJava' },
             { text: 'QQ授权函数', link: '/class/agg/QQfunction' },
           ]
-        }
+        },
+        {
+          text: 'luajava文档',
+          collapsed: false,
+          items: [
+            { text: 'LuaJava函数库', link: '/class/luajava/luajava' },
+          ]
+        },
       ]
     },
     lastUpdated: {
