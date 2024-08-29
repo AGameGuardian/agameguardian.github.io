@@ -193,8 +193,7 @@ print('UTF-16', gg.bytes('example', 'UTF-16LE'))
 | 参数 | 说明 |
 |:----:|:--:|
 | items | Table with items for choice. |
-| selected | Is not specified or is specified as , then the list will be without the default choice.
-nil |
+| selected | Is not specified or is specified as , then the list will be without the default choice. nil |
 | message | Specifies the optional title of the dialog box. |
 
 **返回**
