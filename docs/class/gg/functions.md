@@ -9,11 +9,7 @@ gg 函数
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| items | A table with a list of items to add. Each element is a table with the following fields:
-address (long, required), value (string with a value, optional), flags (one of the constants TYPE_*,
-required), name (string, optional), freeze (boolean, optional, default false), freezeType (one of
-the constants FREEZE_*, optional, default FREEZE_NORMAL), freezeFrom (string, optional), freezeTo (
-string, optional). Values must be in English locale |
+| items | A table with a list of items to add. Each element is a table with the following fields: (long, required), (string with a value, optional), (one of the constants TYPE_*, required), (string, optional), (boolean, optional, default false), (one of the constants FREEZE_*, optional, default FREEZE_NORMAL), (string, optional), (string, optional). Values must be in English locale. addressvalueflagsnamefreezefreezeTypefreezeFromfreezeTo |
 
 **返回**
 | 返回 | 说明 |
@@ -132,8 +128,7 @@ gg.alert('A or B or C?', 'A', 'B', 'C')
 | 参数 | 说明 |
 |:----:|:--:|
 | mode | Bit mask of flags PROT_*. |
-| address | If is not 0, then the kernel takes it as a hint about where to place the page; on
-Android, the page will be allocated at a nearby address page boundary. |
+| address | If is not 0, then the kernel takes it as a hint about where to place the page; onAndroid, the page will be allocated at a nearby address page boundary. |
 
 **返回**
 | 返回 | 说明 |
