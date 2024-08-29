@@ -4,17 +4,22 @@ gg 函数
 
 ## gg.addListItems
 
-说明
+将项目添加到已保存的列表。
 
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| items | A table with a list of items to add. Each element is a table with the following fields:
+address (long, required), value (string with a value, optional), flags (one of the constants TYPE_*,
+required), name (string, optional), freeze (boolean, optional, default false), freezeType (one of
+the constants FREEZE_*, optional, default FREEZE_NORMAL), freezeFrom (string, optional), freezeTo (
+string, optional). Values must be in English locale |
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| True | 成功 |
+| string with error | 错误字符串 |
 
 ::: code-group
 
@@ -71,7 +76,8 @@ gg.addListItems(t)
 
 ## gg.alert
 
-说明
+显示一个带有多个按钮的对话框。
+返回结果取决于按下了哪个按钮。可以使用 “Back” 按钮（返回代码 0）取消对话框。
 
 **参数**
 | 参数 | 说明 |
@@ -84,7 +90,10 @@ gg.addListItems(t)
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| 0 | dialog canceled |
+| 1 | positive button |
+| 2 | negative button |
+| 3 | neutral button |
 
 ::: code-group
 
@@ -117,18 +126,20 @@ gg.alert('A or B or C?', 'A', 'B', 'C')
 
 ## gg.allocatePage
 
-说明
+在目标进程中分配的内存页 （4 KB）。
 
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
 | mode | Bit mask of flags PROT_*. |
-| address | If is not 0, then the kernel takes it as a hint about where to place the page; on Android, the page will be allocated at a nearby address page boundary. |
+| address | If is not 0, then the kernel takes it as a hint about where to place the page; on
+Android, the page will be allocated at a nearby address page boundary. |
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| Address of the page | 页面地址 |
+| string with error | 错误字符串 |
 
 ::: code-group
 
@@ -150,18 +161,18 @@ print('allocatePage 5: ', string.format('0x%08x', gg.allocatePage(gg.PROT_READ |
 
 ## gg.bytes
 
-说明
+获取指定编码的文本字节。
 
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| text |  |
+| text | |
 | encoding | Possible values: 'ISO-8859-1', 'US-ASCII', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-8' |
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| A table with a set of bytes in the specified encoding | 具有一组采用指定编码的字节的表 |
 
 ::: code-group
 
@@ -187,13 +198,15 @@ print('UTF-16', gg.bytes('example', 'UTF-16LE'))
 | 参数 | 说明 |
 |:----:|:--:|
 | items | Table with items for choice. |
-| selected | Is not specified or is specified as , then the list will be without the default choice. nil |
+| selected | Is not specified or is specified as , then the list will be without the default choice.
+nil |
 | message | Specifies the optional title of the dialog box. |
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| nil | dialog has been canceled |
+| the index of the selected item | 选择项目索引 |
 
 ::: code-group
 
@@ -219,17 +232,13 @@ print('4: ', gg.choice({'A', 'B', 'C', 'D'}, nil, 'Select letter:'))
 
 ## gg.clearList
 
-说明
-
-**参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| demo | 示例 |
+清除已保存的列表。
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| true | 成功 |
+| string with error | 错误字符串 |
 
 ::: code-group
 
@@ -245,17 +254,13 @@ print('clearList:', gg.clearList())
 
 ## gg.clearResults
 
-说明
-
-**参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| demo | 示例 |
+清除搜索结果列表。
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| true | 成功 |
+| string with error | 错误字符串 |
 
 ::: code-group
 
@@ -271,17 +276,20 @@ nil clearResults()
 
 ## gg.copyMemory
 
-说明
+复制内存。
 
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| from | Address for source of copy. |
+| to | Address for destination of copy. |
+| bytes | Amount bytes to copy. |
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| true | 成功 |
+| string with error | 错误字符串 |
 
 ::: code-group
 
@@ -302,17 +310,14 @@ print('copyMemory:', gg.copyMemory(0x9000, 0x9010, 3))
 
 ## gg.copyText
 
-说明
+将文本复制到剪贴板。
+如果第二个参数为 true 或未指定，则文本将转换为从英语区域设置到所选区域设置的数字。
 
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
-
-**返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| demo | 示例 |
+| text | The text for copy |
+| fixLocale | Flag to disable fix locale-specific separators |
 
 ::: code-group
 
@@ -334,17 +339,19 @@ gg.copyText('1,234,567.890', false) -- Will copy '1,234,567.890'
 
 ## gg.disasm
 
-说明
+拆解指定的值。
 
 **参数**
 | 参数 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| type | Type. One of the constants ASM_*. Throws an error if a non-existent type is passed |
+| address | The address of the value. May be needed for some opcodes |
+| opcode | Disassembly instruction. To disassemble Thumb32, the first 16-bit instruction should be in the lower half-word of the opcode, and the second in the upper half-word |
 
 **返回**
 | 返回 | 说明 |
 |:----:|:--:|
-| demo | 示例 |
+| string Disassembled opcode string | 反汇编操作码 |
 
 ::: code-group
 
