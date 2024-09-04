@@ -10,7 +10,7 @@ export default defineConfig({
       {
         text: '函数列表',
         items: [
-          { text: 'gg文档', link: '/class/gg/functions', activeMatch: "/class/gg/" },
+          { text: 'gg文档', link: '/class/gg/ggModel', activeMatch: "/class/gg/" },
           { text: 'agg文档', link: '/class/agg/functions', activeMatch: "/class/agg/" },
         ]
       },
@@ -30,8 +30,8 @@ export default defineConfig({
           text: 'gg文档',
           collapsed: false,
           items: [
-            { text: 'functions', link: '/class/gg/functions' },
-            { text: 'variables', link: '/class/gg/variables' },
+            { text: 'gg库', link: '/class/gg/ggModel' },
+            { text: 'io库', link: '/class/gg/ioModel' },
           ]
         },
         {

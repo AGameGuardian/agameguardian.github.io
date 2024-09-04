@@ -1,29 +1,33 @@
-# gg functions
+# GG Functions
 
-gg 函数
+gg库 函数
 
 ## gg.addListItems
 
 将项目添加到已保存的列表。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
+
+
+| 参数 |                                                                                                                                                                                                                      说明                                                                                                                                                                                                                      |
+| :---: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | items | A table with a list of items to add. Each element is a table with the following fields: (long, required), (string with a value, optional), (one of the constants TYPE_*, required), (string, optional), (boolean, optional, default false), (one of the constants FREEZE_*, optional, default FREEZE_NORMAL), (string, optional), (string, optional). Values must be in English locale. addressvalueflagsnamefreezefreezeTypefreezeFromfreezeTo |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| True | 成功 |
+
+
+|       返回       |    说明    |
+| :---------------: | :--------: |
+|       True       |    成功    |
 | string with error | 错误字符串 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed addListItems(table items)
 ```
 
-```lua [例子]
+```lua
 -- retrieving a table from another call
 gg.searchNumber('10', gg.TYPE_DWORD)
 t = gg.getResults(5) -- load items
@@ -76,24 +80,28 @@ gg.addListItems(t)
 返回结果取决于按下了哪个按钮。可以使用 “Back” 按钮（返回代码 0）取消对话框。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| text | Text message. |
+
+
+|   参数   |                         说明                         |
+| :------: | :--------------------------------------------------: |
+|   text   |                    Text message.                    |
 | positive | Text for positive button. This button return code 1. |
 | negative | Text for negative button. This button return code 2. |
 | neutral | Text for neutral button. This button return code 3. |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| 0 | dialog canceled |
-| 1 | positive button |
-| 2 | negative button |
-| 3 | neutral button |
+
+
+| 返回 |      说明      |
+| :--: | :-------------: |
+|  0  | dialog canceled |
+|  1  | positive button |
+|  2  | negative button |
+|  3  | neutral button |
 
 ::: code-group
 
-```lua [默认]
+```lua
 gg.alert(string text,
          string positive = 'ok',
          string negative = nil,
@@ -101,7 +109,7 @@ gg.alert(string text,
         )
 ```
 
-```lua [例子]
+```lua
 gg.alert('Script ended')
 -- Show alert with single 'ok' button
 
@@ -125,26 +133,30 @@ gg.alert('A or B or C?', 'A', 'B', 'C')
 在目标进程中分配的内存页 （4 KB）。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| mode | Bit mask of flags PROT_*. |
+
+
+|  参数  |                                                                          说明                                                                          |
+| :-----: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  mode  |                                                                Bit mask of flags PROT_*.                                                                |
 | address | If is not 0, then the kernel takes it as a hint about where to place the page; onAndroid, the page will be allocated at a nearby address page boundary. |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| Address of the page | 页面地址 |
-| string with error | 错误字符串 |
+
+
+|        返回        |    说明    |
+| :-----------------: | :--------: |
+| Address of the page |  页面地址  |
+|  string with error  | 错误字符串 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed allocatePage(int mode = gg.PROT_READ | gg.PROT_EXEC,
                    long address = 0
                   )
 ```
 
-```lua [例子]
+```lua
 print('allocatePage 1: ', string.format('0x%08x', gg.allocatePage()))
 print('allocatePage 2: ', string.format('0x%08x', gg.allocatePage(gg.PROT_READ | gg.PROT_EXEC)))
 print('allocatePage 3: ', string.format('0x%08x', gg.allocatePage(gg.PROT_READ | gg.PROT_WRITE)))
@@ -159,25 +171,29 @@ print('allocatePage 5: ', string.format('0x%08x', gg.allocatePage(gg.PROT_READ |
 获取指定编码的文本字节。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| text | |
+
+
+|   参数   |                                         说明                                         |
+| :------: | :----------------------------------------------------------------------------------: |
+|   text   |                                                                                      |
 | encoding | Possible values: 'ISO-8859-1', 'US-ASCII', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'UTF-8' |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
+
+
+|                         返回                         |              说明              |
+| :---------------------------------------------------: | :----------------------------: |
 | A table with a set of bytes in the specified encoding | 具有一组采用指定编码的字节的表 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 string bytes(string text,
              string encoding = 'UTF-8'
             )
 ```
 
-```lua [例子]
+```lua
 print('UTF-8', gg.bytes('example'))
 print('UTF-8', gg.bytes('example', 'UTF-8'))
 print('UTF-16', gg.bytes('example', 'UTF-16LE'))
@@ -190,28 +206,32 @@ print('UTF-16', gg.bytes('example', 'UTF-16LE'))
 说明
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| items | Table with items for choice. |
+
+
+|   参数   |                                            说明                                            |
+| :------: | :-----------------------------------------------------------------------------------------: |
+|  items  |                                Table with items for choice.                                |
 | selected | Is not specified or is specified as , then the list will be without the default choice. nil |
-| message | Specifies the optional title of the dialog box. |
+| message |                       Specifies the optional title of the dialog box.                       |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| nil | dialog has been canceled |
-| the index of the selected item | 选择项目索引 |
+
+
+|              返回              |           说明           |
+| :----------------------------: | :----------------------: |
+|              nil              | dialog has been canceled |
+| the index of the selected item |       选择项目索引       |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed choice(table items,
              string selected = nil,
              string message = nil
             )
 ```
 
-```lua [例子]
+```lua
 print('1: ', gg.choice({'A', 'B', 'C', 'D'}))
 -- show list of 4 items
 print('2: ', gg.choice({'A', 'B', 'C', 'D'}, 2))
@@ -229,18 +249,20 @@ print('4: ', gg.choice({'A', 'B', 'C', 'D'}, nil, 'Select letter:'))
 清除已保存的列表。
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| true | 成功 |
+
+
+|       返回       |    说明    |
+| :---------------: | :--------: |
+|       true       |    成功    |
 | string with error | 错误字符串 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed clearList()
 ```
 
-```lua [例子]
+```lua
 print('clearList:', gg.clearList())
 ```
 
@@ -251,18 +273,20 @@ print('clearList:', gg.clearList())
 清除搜索结果列表。
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| true | 成功 |
+
+
+|       返回       |    说明    |
+| :---------------: | :--------: |
+|       true       |    成功    |
 | string with error | 错误字符串 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil clearResults()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -273,21 +297,25 @@ nil clearResults()
 复制内存。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| from | Address for source of copy. |
-| to | Address for destination of copy. |
-| bytes | Amount bytes to copy. |
+
+
+| 参数 |               说明               |
+| :---: | :------------------------------: |
+| from |   Address for source of copy.   |
+|  to  | Address for destination of copy. |
+| bytes |      Amount bytes to copy.      |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
-| true | 成功 |
+
+
+|       返回       |    说明    |
+| :---------------: | :--------: |
+|       true       |    成功    |
 | string with error | 错误字符串 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 
 mixed copyMemory(long from,
                  long to,
@@ -295,7 +323,7 @@ mixed copyMemory(long from,
                 )
 ```
 
-```lua [例子]
+```lua
 print('copyMemory:', gg.copyMemory(0x9000, 0x9010, 3))
 -- copies 3 bytes 0x9000-0x9002 to 0x9010-0x9012
 ```
@@ -308,20 +336,22 @@ print('copyMemory:', gg.copyMemory(0x9000, 0x9010, 3))
 如果第二个参数为 true 或未指定，则文本将转换为从英语区域设置到所选区域设置的数字。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| text | The text for copy |
+
+
+|   参数   |                      说明                      |
+| :-------: | :--------------------------------------------: |
+|   text   |               The text for copy               |
 | fixLocale | Flag to disable fix locale-specific separators |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil copyText(string text,
              bool fixLocale = true
             )
 ```
 
-```lua [例子]
+```lua
 -- selected 'ru' locale, where decimal separator is ',' and thousand separator is ' '.
 -- in English locale(en_US) decimal separator is '.' and thousand separator is ','.
 gg.copyText('1,234,567.890') -- Will copy '1 234 567,890'
@@ -336,27 +366,31 @@ gg.copyText('1,234,567.890', false) -- Will copy '1,234,567.890'
 拆解指定的值。
 
 **参数**
-| 参数 | 说明 |
-|:----:|:--:|
-| type | Type. One of the constants ASM_*. Throws an error if a non-existent type is passed |
-| address | The address of the value. May be needed for some opcodes |
+
+
+|  参数  |                                                                                说明                                                                                |
+| :-----: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  type  |                                         Type. One of the constants ASM_*. Throws an error if a non-existent type is passed                                         |
+| address |                                                      The address of the value. May be needed for some opcodes                                                      |
 | opcode | Disassembly instruction. To disassemble Thumb32, the first 16-bit instruction should be in the lower half-word of the opcode, and the second in the upper half-word |
 
 **返回**
-| 返回 | 说明 |
-|:----:|:--:|
+
+
+|               返回               |     说明     |
+| :-------------------------------: | :----------: |
 | string Disassembled opcode string | 反汇编操作码 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 string disasm(int type,
               long address,
               int opcode
              )
 ```
 
-```lua [例子]
+```lua
 print('ARM', gg.disasm(gg.ASM_ARM, 0x12345678, 0xE1A01002))
 
 print('Thumb16', gg.disasm(gg.ASM_THUMB, 0x12345678, 0x0011))
@@ -373,18 +407,22 @@ print('ARM64', gg.disasm(gg.ASM_ARM64, 0x12345678, 0x2A0103E2))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed dumpMemory(long from,
                  long to,
                  string dir,
@@ -392,7 +430,7 @@ mixed dumpMemory(long from,
                 )
 ```
 
-```lua [例子]
+```lua
 print('dumpMemory:', gg.dumpMemory(0x9000, 0x9010, '/sdcard/dump'))
 -- dump at least one memory page into the dir '/sdcard/dump'
 
@@ -412,25 +450,29 @@ print('dumpMemory:', gg.dumpMemory(0, -1, '/sdcard/dump', gg.DUMP_SKIP_SYSTEM_LI
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 
 mixed editAll(string value,
               int type
              )
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 gg.getResults(5)
 gg.editAll('15', gg.TYPE_DWORD)
@@ -493,22 +535,26 @@ gg.editAll('~A MOV R2, R3', gg.TYPE_DWORD)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 int getActiveTab()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -519,22 +565,26 @@ int getActiveTab()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 string getFile()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -545,22 +595,26 @@ string getFile()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 int getLine()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -571,22 +625,26 @@ int getLine()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getListItems()
 ```
 
-```lua [例子]
+```lua
 local r = gg.getListItems()
 print('Items: ', r)
 print('First item: ', r[1])
@@ -607,22 +665,26 @@ print('First item freeze to: ', r[1].freezeTo)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 string getLocale()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -633,22 +695,26 @@ string getLocale()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 int getRanges()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -659,22 +725,26 @@ int getRanges()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 table getRangesList(string filter = '')
 ```
 
-```lua [例子]
+```lua
 print(gg.getRangesList())
 
 local t = gg.getRangesList();
@@ -697,18 +767,22 @@ print(gg.getRangesList('.so$'))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getResults(int maxCount,
                  int skip = 0,
                  long addressMin = nil,
@@ -721,7 +795,7 @@ mixed getResults(int maxCount,
                 )
 ```
 
-```lua [例子]
+```lua
 gg.clearResults()
 gg.startFuzzy(gg.TYPE_AUTO)
 local r = gg.getResults(5)
@@ -760,22 +834,26 @@ print('Only pointers to read-only memory: ', r)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 long getResultsCount()
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 print('Found: ', gg.getResultsCount())
 ```
@@ -787,22 +865,26 @@ print('Found: ', gg.getResultsCount())
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getSelectedElements()
 ```
 
-```lua [例子]
+```lua
 print('Selected: ', gg.getSelectedElements())
 ```
 
@@ -813,22 +895,26 @@ print('Selected: ', gg.getSelectedElements())
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getSelectedListItems()
 ```
 
-```lua [例子]
+```lua
 print('Selected: ', gg.getSelectedListItems())
 ```
 
@@ -839,22 +925,26 @@ print('Selected: ', gg.getSelectedListItems())
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getSelectedResults()
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 gg.getResults(5)
 print('Selected: ', gg.getSelectedResults())
@@ -867,22 +957,26 @@ print('Selected: ', gg.getSelectedResults())
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 double getSpeed()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -893,22 +987,26 @@ double getSpeed()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getTargetInfo()
 ```
 
-```lua [例子]
+```lua
 -- check for game version
 local v = gg.getTargetInfo()
 if v.versionCode ~= 291 then
@@ -924,22 +1022,26 @@ end
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getTargetPackage()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -950,22 +1052,26 @@ mixed getTargetPackage()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getValues(table values)
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 local r = gg.getResults(5) -- load items
 r = gg.getValues(r) -- refresh items values
@@ -993,22 +1099,26 @@ print(t)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed getValuesRange(table values)
 ```
 
-```lua [例子]
+```lua
 print('1: ', gg.getValuesRange({0x9000, 0x9010, 0x9020, 0x9030}))
 -- table as a list of addresses
 
@@ -1025,22 +1135,26 @@ print('2: ', r, gg.getValuesRange(r))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil gotoAddress(long address)
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1051,22 +1165,26 @@ nil gotoAddress(long address)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil hideUiButton()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1077,22 +1195,26 @@ nil hideUiButton()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed isClickedUiButton()
 ```
 
-```lua [例子]
+```lua
 gg.showUiButton()
 while true do
  if gg.isClickedUiButton() then
@@ -1111,22 +1233,26 @@ end
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool isPackageInstalled(string pkg)
 ```
 
-```lua [例子]
+```lua
 print('Game installed:', gg.isPackageInstalled('com.blayzegames.iosfps'))
 ```
 
@@ -1137,22 +1263,26 @@ print('Game installed:', gg.isPackageInstalled('com.blayzegames.iosfps'))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool isProcessPaused()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1163,22 +1293,26 @@ bool isProcessPaused()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool isVisible()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1189,24 +1323,28 @@ bool isVisible()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed loadList(string file,
                int flags = 0
               )
 ```
 
-```lua [例子]
+```lua
 print('loadList:', gg.loadList('/sdcard/Notes/gg.victim.txt'))
 print('loadList:', gg.loadList('/sdcard/Notes/gg.victim.txt', 0))
 print('loadList:', gg.loadList('/sdcard/Notes/gg.victim.txt', gg.LOAD_APPEND))
@@ -1221,22 +1359,26 @@ print('loadList:', gg.loadList('/sdcard/Notes/gg.victim.txt', gg.LOAD_APPEND | g
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed loadResults(table results)
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 local r = gg.getResults(5)
 print('load first 5 results: ', gg.loadResults(r))
@@ -1258,25 +1400,29 @@ print('load from table: ', gg.loadResults(t))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed makeRequest(string url,
                   table headers = {},
                   string data = nil
                  )
 ```
 
-```lua [例子]
+```lua
 print('GET 1: ', gg.makeRequest('http://httpbin.org/headers').content) -- simple GET request
 
 print('GET 2: ', gg.makeRequest('http://httpbin.org/headers', {['User-Agent']='My BOT'}).content) -- GET request with headers
@@ -1303,25 +1449,29 @@ print('FULL: ', gg.makeRequest('https://httpbin.org/headers')) -- print full inf
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed multiChoice(table items,
                   table selection = {},
                   string message = nil
                  )
 ```
 
-```lua [例子]
+```lua
 print('1: ', gg.multiChoice({'A', 'B', 'C', 'D'}))
 -- show list of 4 items without checked items
 
@@ -1361,22 +1511,26 @@ end
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 string numberFromLocale(string num)
 ```
 
-```lua [例子]
+```lua
 print(gg.numberFromLocale('1.234,567')) -- print '1234.567' for German locale
 ```
 
@@ -1387,22 +1541,26 @@ print(gg.numberFromLocale('1.234,567')) -- print '1234.567' for German locale
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 string numberToLocale(string num)
 ```
 
-```lua [例子]
+```lua
 print(gg.numberToLocale('1,234.567')) -- print '1234,567' for German locale
 ```
 
@@ -1413,22 +1571,26 @@ print(gg.numberToLocale('1,234.567')) -- print '1234,567' for German locale
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool processKill()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1439,22 +1601,26 @@ bool processKill()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool processPause()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1465,22 +1631,26 @@ bool processPause()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool processResume()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1491,22 +1661,26 @@ bool processResume()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 bool processToggle()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -1517,25 +1691,29 @@ bool processToggle()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed prompt(table prompts,
              table defaults = {},
              table types = {}
             )
 ```
 
-```lua [例子]
+```lua
 print('prompt 1: ', gg.prompt(
  {'ask any', 'ask num', 'ask text', 'ask path', 'ask file', 'ask set', 'ask speed', 'checked', 'not checked'},
  {[1]='any val', [7]=123, [6]=-0.34, [8]=true},
@@ -1585,18 +1763,22 @@ end
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed refineAddress(string text,
                     long mask = -1,
                     int type = gg.TYPE_AUTO,
@@ -1607,7 +1789,7 @@ mixed refineAddress(string text,
                    )
 ```
 
-```lua [例子]
+```lua
 gg.refineAddress('A20', 0xFFFFFFFF)
 
 gg.refineAddress('B20', 0xFF0, gg.TYPE_DWORD, gg.SIGN_NOT_EQUAL)
@@ -1631,18 +1813,22 @@ gg.refineAddress('A20', 0xFFFFFFFF)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed refineNumber(string text,
                    int type = gg.TYPE_AUTO,
                    bool encrypted = false,
@@ -1653,7 +1839,7 @@ mixed refineNumber(string text,
                   )
 ```
 
-```lua [例子]
+```lua
 -- number refine
 gg.refineNumber('10', gg.TYPE_DWORD)
 
@@ -1689,22 +1875,26 @@ gg.refineNumber('10', gg.TYPE_DWORD)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed removeListItems(table items)
 ```
 
-```lua [例子]
+```lua
 -- retrieving a table from another call
 t = gg.getListItems()
 print('removeListItems: ', gg.removeListItems(t))
@@ -1731,22 +1921,26 @@ print('removeListItems: ', gg.removeListItems(t))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed removeResults(table results)
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 local r = gg.getResults(5)
 print('Remove first 5 results: ', gg.removeResults(r))
@@ -1759,24 +1953,28 @@ print('Remove first 5 results: ', gg.removeResults(r))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil require(string version = nil,
             int build = 0
            )
 ```
 
-```lua [例子]
+```lua
 gg.require('8.31.1')
 gg.require('8.31.1', 5645)
 gg.require(nil, 5645)
@@ -1789,24 +1987,28 @@ gg.require(nil, 5645)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed saveList(string file,
                int flags = 0
               )
 ```
 
-```lua [例子]
+```lua
 print('saveList:', gg.saveList('/sdcard/Notes/gg.victim.txt'))
 print('saveList:', gg.saveList('/sdcard/Notes/gg.victim.txt', 0))
 print('saveList:', gg.saveList('/sdcard/Notes/gg.victim.txt', gg.SAVE_AS_TEXT))
@@ -1819,24 +2021,28 @@ print('saveList:', gg.saveList('/sdcard/Notes/gg.victim.txt', gg.SAVE_AS_TEXT))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed saveVariable(mixed variable,
                    string filename
                   )
 ```
 
-```lua [例子]
+```lua
 local t = {}
 t['test1'] = {1, 2, 3, 4}
 t['test2'] = 42
@@ -1864,18 +2070,22 @@ gg.saveVariable(input, configFile)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed searchAddress(string text,
                     long mask = -1,
                     int type = gg.TYPE_AUTO,
@@ -1886,7 +2096,7 @@ mixed searchAddress(string text,
                    )
 ```
 
-```lua [例子]
+```lua
 gg.searchAddress('A20', 0xFFFFFFFF)
 
 gg.searchAddress('B20', 0xFF0, gg.TYPE_DWORD, gg.SIGN_NOT_EQUAL)
@@ -1910,18 +2120,22 @@ gg.searchAddress('A20', 0xFFFFFFFF)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed searchFuzzy(string difference = '0',
                   int sign = gg.SIGN_FUZZY_EQUAL,
                   int type = gg.TYPE_AUTO,
@@ -1931,7 +2145,7 @@ mixed searchFuzzy(string difference = '0',
                  )
 ```
 
-```lua [例子]
+```lua
 gg.searchFuzzy()
 -- value not changed
 
@@ -1958,18 +2172,22 @@ gg.searchFuzzy('-115')
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed searchNumber(string text,
                    int type = gg.TYPE_AUTO,
                    bool encrypted = false,
@@ -1980,7 +2198,7 @@ mixed searchNumber(string text,
                   )
 ```
 
-```lua [例子]
+```lua
 -- number search
 gg.searchNumber('10', gg.TYPE_DWORD)
 
@@ -2037,18 +2255,22 @@ gg.searchNumber('10', gg.TYPE_DWORD)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed searchPointer(int maxOffset,
                     long memoryFrom = 0,
                     long memoryTo = -1,
@@ -2056,7 +2278,7 @@ mixed searchPointer(int maxOffset,
                    )
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 5) -- search some values
 gg.searchPointer(512) -- search for possible pointers to values finded before
 
@@ -2082,22 +2304,26 @@ gg.searchPointer(512) -- search for possible pointers to values loaded before
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil setRanges(int ranges)
 ```
 
-```lua [例子]
+```lua
 gg.setRanges(gg.REGION_C_HEAP)
 
 gg.setRanges(bit32.bor(gg.REGION_C_HEAP, gg.REGION_C_ALLOC, gg.REGION_ANONYMOUS))
@@ -2112,22 +2338,26 @@ gg.setRanges(gg.REGION_C_HEAP | gg.REGION_C_ALLOC | gg.REGION_ANONYMOUS)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed setSpeed(double speed)
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -2138,22 +2368,26 @@ mixed setSpeed(double speed)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed setValues(table values)
 ```
 
-```lua [例子]
+```lua
 gg.searchNumber('10', gg.TYPE_DWORD)
 local r = gg.getResults(5) -- load items
 r[1].value = '15'
@@ -2184,22 +2418,26 @@ print('Edited: ', gg.setValues(r))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil setVisible(bool visible)
 ```
 
-```lua [例子]
+```lua
 function doAction()
  -- do some action for click, menu for example
  local ret = gg.choice({'Item 1', 'Item 2', 'Item 3'}) or os.exit(gg.setVisible(true))
@@ -2222,22 +2460,26 @@ end
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil showUiButton()
 ```
 
-```lua [例子]
+```lua
 
 ```
 
@@ -2248,22 +2490,26 @@ nil showUiButton()
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil skipRestoreState()
 ```
 
-```lua [例子]
+```lua
 gg.setRanges(bit32.bxor(gg.REGION_C_HEAP, gg.REGION_C_ALLOC, gg.REGION_ANONYMOUS))
 
 -- do some things like search values
@@ -2280,22 +2526,26 @@ gg.setRanges(bit32.bxor(gg.REGION_C_HEAP, gg.REGION_C_ALLOC, gg.REGION_ANONYMOUS
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil sleep(int milliseconds)
 ```
 
-```lua [例子]
+```lua
 -- 200 ms
 gg.sleep(200)
 
@@ -2311,18 +2561,22 @@ gg.sleep(v)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed startFuzzy(int type = gg.TYPE_AUTO,
                  long memoryFrom = 0,
                  long memoryTo = -1,
@@ -2330,7 +2584,7 @@ mixed startFuzzy(int type = gg.TYPE_AUTO,
                 )
 ```
 
-```lua [例子]
+```lua
 gg.startFuzzy()
 
 gg.startFuzzy(gg.TYPE_DWORD)
@@ -2347,22 +2601,26 @@ gg.startFuzzy(gg.TYPE_BYTE, 0x9000, 0xA09000)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed timeJump(string time)
 ```
 
-```lua [例子]
+```lua
 print('jump 1:', gg.timeJump('42345678'))
 -- jump for 1 year 125 days 2 hours 41 minutes 18 seconds
 
@@ -2395,24 +2653,28 @@ print('jump 8:', gg.timeJump('7:3:1.519'))
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 nil toast(string text,
           bool fast = false
          )
 ```
 
-```lua [例子]
+```lua
 gg.toast('This is toast')
 -- Show text notification for a long period of time
 
@@ -2427,18 +2689,22 @@ gg.toast('This is toast', true)
 说明
 
 **参数**
+
+
 | 参数 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 **返回**
+
+
 | 返回 | 说明 |
-|:----:|:--:|
+| :--: | :--: |
 | demo | 示例 |
 
 ::: code-group
 
-```lua [默认]
+```lua
 mixed unrandomizer(long qword = nil,
                    long qincr = nil,
                    double double_ = nil,
@@ -2446,7 +2712,7 @@ mixed unrandomizer(long qword = nil,
                   )
 ```
 
-```lua [例子]
+```lua
 print('unrandomizer:', gg.unrandomizer(0)) -- set only qword = 0
 print('unrandomizer:', gg.unrandomizer(0, 1)) -- set only qword = 0 with increment = 1
 print('unrandomizer:', gg.unrandomizer(nil, nil, 0.3)) -- set only double without increment
