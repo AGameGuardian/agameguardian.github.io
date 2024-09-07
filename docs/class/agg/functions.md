@@ -197,8 +197,11 @@ gg.mainSwitch()
 说明
 
 window viewList ( string tabTitle, userdata view, bool lock, userdara window )window viewList ( string tabTitle, userdata view, bool lock, userdara window )
-##一、解释：将绘制的view显示在tab悬浮窗里进行绑定
-##二、调用参数：
+
+一、解释：将绘制的view显示在tab悬浮窗里进行绑定
+
+二、调用参数：
+
 ▪tabTitle▪
 tab栏的字符串标题。
 ▪view▪
