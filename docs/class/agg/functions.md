@@ -203,14 +203,22 @@ window viewList ( string tabTitle, userdata view, bool lock, userdara window )wi
 二、调用参数：
 
 ▪tabTitle▪
+
 tab栏的字符串标题。
+
 ▪view▪
+
 由AGG或者luajava创建的view实例。
+
 ▪lock▪
+
 锁定菜单(设置true锁定)。
+
 ▪window▪
+
 tab栏悬浮窗的实例(如果留空则创建新的tab悬浮窗，传入tab悬浮窗实例将view装载此window上而不创建新实例)。
-##三、返回值：返回tab悬浮窗的实例。
+
+三、返回值：返回tab悬浮窗的实例。
 
 **例子**
 
