@@ -309,24 +309,24 @@ gg.shell()
 
 userdata viewList ( table items, function flushed )
 
-    一、解释：
+一、解释：
 
-    绘制一个菜单列表的view
+绘制一个菜单列表的view
 
-    二、调用参数：
+二、调用参数：
 
-    ▪items▪
+▪items▪
 
-    包涵要显示的菜单列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、subTitle（字符串副标题，必须）、main（点击此项后回调的函数，必需）。
+包涵要显示的菜单列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、subTitle（字符串副标题，必须）、main（点击此项后回调的函数，必需）。
 
-    ▪flushed▪
+▪flushed▪
 
-    菜单列表视图下拉刷新函数的回调。
+菜单列表视图下拉刷新函数的回调。
 
-    **例子**
+**例子**
 
-    ```lua
-    function mainAP(Table, func, tabTitle)
+```lua
+function mainAP(Table, func, tabTitle)
         -- 菜单封装
         local list = { }
         for(k, v in pairs(Table)) {
@@ -354,31 +354,31 @@ userdata viewList ( table items, function flushed )
         } , flushed , "主菜单" )
         ```
 
-        ## gg.viewMultiChoice
+## gg.viewMultiChoice
 
-        说明
+说明
 
-        userdata viewMultiChoice ( table items, function onclick )
+userdata viewMultiChoice ( table items, function onclick )
 
-            一、解释：
+一、解释：
 
-            绘制一个多选列表的view
+绘制一个多选列表的view
 
-            二、调用参数：
+二、调用参数：
 
-            ▪items▪
+▪items▪
 
-            包涵要显示的多选列表，每个元素都是一个字符串。
+包涵要显示的多选列表，每个元素都是一个字符串。
 
-            ▪onclick▪
+▪onclick▪
 
-            多选视图按钮函数的回调。
+多选视图按钮函数的回调。
 
 
 
-            **例子**
+**例子**
 
-            ```lua
+```lua
             local multiTable={}
             for i=1,50 do
                 table.insert(multiTable,i)
@@ -388,41 +388,41 @@ userdata viewList ( table items, function flushed )
             end
             local view = gg.viewMultiChoice(multiTable, onclick)
             gg.mainTabs("多选视图", view, false)
-            ```
+```
 
-            ## gg.viewPrompt
+## gg.viewPrompt
 
-            说明
+说明
 
-            userdata viewPrompt ( table prompts, table defaults = {}, table types = {}, function onclick )
+userdata viewPrompt ( table prompts, table defaults = {}, table types = {}, function onclick )
 
-                一、解释：绘制一个输入列表的view
+一、解释：绘制一个输入列表的view
 
-                二、调用参数：
+二、调用参数：
 
-                ▪prompts▪
+▪prompts▪
 
-                该表指定了每个输入字段的键和描述。
+该表指定了每个输入字段的键和描述。
 
-                ▪defaults▪
+▪defaults▪
 
-                该表根据提示为每个键指定默认值。
+该表根据提示为每个键指定默认值。
 
-                ▪types▪
+▪types▪
 
-                该表指定了提示中每个键的类型。有效类型：“number”、“text”、“path”、“file”、“new_file”、“setting”、“speed”、“checkbox”、“slider”、“range_slider”、“chip”。根据输入字段附近附加元素的类型输出（例如，用于选择路径或文件的按钮等）。
+该表指定了提示中每个键的类型。有效类型：“number”、“text”、“path”、“file”、“new_file”、“setting”、“speed”、“checkbox”、“slider”、“range_slider”、“chip”。根据输入字段附近附加元素的类型输出（例如，用于选择路径或文件的按钮等）。
 
-                ▪onclick▪
+▪onclick▪
 
-                输入列表按钮函数的回调。
+输入列表按钮函数的回调。
 
-                三、返回值：
+三、返回值：
 
-                返回绘制结束之后的view。
+返回绘制结束之后的view。
 
-                **例子**
+**例子**
 
-                ```lua
+```lua
                 function onClick(tab)
                     gg.alert(tostring(tab))
                 end
@@ -442,31 +442,31 @@ userdata viewList ( table items, function flushed )
                 { { from = -100 , to = 300 , value = 50 , size = 5 , tickVisible = false } ,
                     { from = 10 , to = 200 , value = { 20 , 100 , 180 , 200 } } ,2 ,{ 1 , 3 } ,{ '苹果' , '橘子' , '草莓' , '香蕉' , '1315' , '1319' , '1514' , '1596' } ,{ '苹果' , '橘子' , '草莓' , '香蕉' , '1315' , '1319' , '1514' , '1596' } ,'123' ,'456' ,true ,false ,'/storage/emulated/0/AppProjects/' ,'/storage/emulated/0/AppProjects/最新的luaj.zip'} ,{ "slider" , "range_slider" , 'number' , "chip" , 'text' , "chip" , "number" , 'text' , 'checkbox' , 'checkbox' , 'path' , 'file' } , onClick )
                 gg.mainTabs ( '输入框' , view , false )
-                ```
+```
 
-                ## gg.viewSwitch
+## gg.viewSwitch
 
-                说明
+说明
 
-                userdata viewSwitch ( table items )
+userdata viewSwitch ( table items )
 
-                一、解释：
+一、解释：
 
-                绘制一个开关列表的view
+绘制一个开关列表的view
 
-                二、调用参数：
+二、调用参数：
 
-                ▪items▪
+▪items▪
 
-                包涵要显示的开关列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、open（开关开启后的回调函数，必须）、close（开关关闭后的回调函数，必需）、isCheck（开关默认的状态(true默认开启，false关闭)，必须）。
+包涵要显示的开关列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、open（开关开启后的回调函数，必须）、close（开关关闭后的回调函数，必需）、isCheck（开关默认的状态(true默认开启，false关闭)，必须）。
 
-                三、返回值：
+三、返回值：
 
-                返回绘制结束之后的view。
+返回绘制结束之后的view。
 
-                **例子**
+**例子**
 
-                ```lua
+```lua
                 function switchAp ( Table , tabTitle )
                     -- 开关封装
                     local list = { }
@@ -501,82 +501,83 @@ userdata viewList ( table items, function flushed )
                             , true
                         }
                     } , "开关视图" )
-                    ```
+```
 
-                    ## gg.viewText
+## gg.viewText
 
-                    说明
+说明
 
-                    userdata viewText ( string text )
+userdata viewText ( string text )
 
-                    一、解释：
+一、解释：
 
-                    绘制一个长文本的view
+绘制一个长文本的view
 
-                    二、调用参数：
+二、调用参数：
 
-                    ▪text▪
+▪text▪
 
-                    需要显示的字符串文本。
+需要显示的字符串文本。
 
-                    三、返回值：
+三、返回值：
 
-                    返回绘制结束之后的view。
+返回绘制结束之后的view。
 
-                    **例子**
+**例子**
 
-                    ```lua
+```lua
                     local view = gg.viewText ( '--------{?天启全功能脚本公告:#FFFFFFFF:1.5}--------{?2023.04.19:#FF486AFF:1:0:true}更新日志适配造梦13.4.1版本({?4399:#FFF86363:1:1:true})适配造梦13.4.1版本(渠道服)2023.04.17更新日志适配造梦13.4.0版本(4399)2023.03.26更新日志优化人物无敌(免疫debuff伤害)适配造梦13.3.4(4399)2023.03.23更新日志更换新的人物无敌功能(更无敌)修复了称号秒杀直接把属性加在面板上的问题降低了全局秒杀的伤害(当然，建议还是不要使用)2023.03.18更新日志新增奇闻录激活图鉴功能(装备功能>>开奇闻录)新增五中一键录入全角色白装(装备功能>>无中功能>>一键录入)移除全ID查询功能(目前有动态检索功能可以直接检索物品查ID)优化悬浮窗体验修复物理功能无限法宝无效问题2023.03.17更新日志新增雇佣功能(角色功能>>其他功能)[该功能还未完善]适配造梦13.3.2版本(4399)适配造梦13.3.2版本(渠道服)适配新版防闪(看见此公告请快速更新游戏)' )
                     gg.mainTabs( '脚本公告' , view , false , window)
+```
+
+## gg.viewThreadList
+
+说明
+
+**例子**
+
+```lua
+gg.viewThreadList()
+```
+
+## gg.viewTouch
+
+说明
+
+**例子**
+
+```lua
+gg.viewTouch()
                     ```
 
-                    ## gg.viewThreadList
+## gg.viewWeb
 
-                    说明
+说明
 
-                    **例子**
+userdata viewWeb ( string url )
 
-                    ```lua
-                    gg.viewThreadList()
-                    ```
+一、解释：
 
-                    ## gg.viewTouch
+绘制一个web的view
 
-                    说明
+二、调用参数：
 
-                    **例子**
+▪url▪
 
-                    ```lua
-                    gg.viewTouch()
-                    ```
+网址链接。
 
-                    ## gg.viewWeb
+三、返回值：
 
-                    说明
-
-                    userdata viewWeb ( string url )
-
-                    一、解释：
-
-                    绘制一个web的view
-
-                    二、调用参数：
-
-                    ▪url▪
-
-                    网址链接。
-
-                    三、返回值：
-
-                    返回绘制结束之后的view。
+返回绘制结束之后的view。
 
 
-                    **例子**
+**例子**
 
-                    ```lua
-                    local view = gg.viewWeb( 'https://tianqix.gitee.io')
-                    gg.mainTabs( '广告页' , view , false , window)
-                    ```# agg functions
+```lua
+local view = gg.viewWeb( 'https://tianqix.gitee.io')
+gg.mainTabs( '广告页' , view , false , window)
+
+```# agg functions
 
 agg 函数
 
@@ -887,24 +888,24 @@ gg.shell()
 
 userdata viewList ( table items, function flushed )
 
-    一、解释：
+一、解释：
 
-    绘制一个菜单列表的view
+绘制一个菜单列表的view
 
-    二、调用参数：
+二、调用参数：
 
-    ▪items▪
+▪items▪
 
-    包涵要显示的菜单列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、subTitle（字符串副标题，必须）、main（点击此项后回调的函数，必需）。
+包涵要显示的菜单列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、subTitle（字符串副标题，必须）、main（点击此项后回调的函数，必需）。
 
-    ▪flushed▪
+▪flushed▪
 
-    菜单列表视图下拉刷新函数的回调。
+菜单列表视图下拉刷新函数的回调。
 
-    **例子**
+**例子**
 
-    ```lua
-    function mainAP(Table, func, tabTitle)
+```lua
+function mainAP(Table, func, tabTitle)
         -- 菜单封装
         local list = { }
         for(k, v in pairs(Table)) {
@@ -932,31 +933,31 @@ userdata viewList ( table items, function flushed )
         } , flushed , "主菜单" )
         ```
 
-        ## gg.viewMultiChoice
+## gg.viewMultiChoice
 
-        说明
+说明
 
-        userdata viewMultiChoice ( table items, function onclick )
+userdata viewMultiChoice ( table items, function onclick )
 
-            一、解释：
+一、解释：
 
-            绘制一个多选列表的view
+绘制一个多选列表的view
 
-            二、调用参数：
+二、调用参数：
 
-            ▪items▪
+▪items▪
 
-            包涵要显示的多选列表，每个元素都是一个字符串。
+包涵要显示的多选列表，每个元素都是一个字符串。
 
-            ▪onclick▪
+▪onclick▪
 
-            多选视图按钮函数的回调。
+多选视图按钮函数的回调。
 
 
 
-            **例子**
+**例子**
 
-            ```lua
+```lua
             local multiTable={}
             for i=1,50 do
                 table.insert(multiTable,i)
@@ -966,41 +967,41 @@ userdata viewList ( table items, function flushed )
             end
             local view = gg.viewMultiChoice(multiTable, onclick)
             gg.mainTabs("多选视图", view, false)
-            ```
+```
 
-            ## gg.viewPrompt
+## gg.viewPrompt
 
-            说明
+说明
 
-            userdata viewPrompt ( table prompts, table defaults = {}, table types = {}, function onclick )
+userdata viewPrompt ( table prompts, table defaults = {}, table types = {}, function onclick )
 
-                一、解释：绘制一个输入列表的view
+一、解释：绘制一个输入列表的view
 
-                二、调用参数：
+二、调用参数：
 
-                ▪prompts▪
+▪prompts▪
 
-                该表指定了每个输入字段的键和描述。
+该表指定了每个输入字段的键和描述。
 
-                ▪defaults▪
+▪defaults▪
 
-                该表根据提示为每个键指定默认值。
+该表根据提示为每个键指定默认值。
 
-                ▪types▪
+▪types▪
 
-                该表指定了提示中每个键的类型。有效类型：“number”、“text”、“path”、“file”、“new_file”、“setting”、“speed”、“checkbox”、“slider”、“range_slider”、“chip”。根据输入字段附近附加元素的类型输出（例如，用于选择路径或文件的按钮等）。
+该表指定了提示中每个键的类型。有效类型：“number”、“text”、“path”、“file”、“new_file”、“setting”、“speed”、“checkbox”、“slider”、“range_slider”、“chip”。根据输入字段附近附加元素的类型输出（例如，用于选择路径或文件的按钮等）。
 
-                ▪onclick▪
+▪onclick▪
 
-                输入列表按钮函数的回调。
+输入列表按钮函数的回调。
 
-                三、返回值：
+三、返回值：
 
-                返回绘制结束之后的view。
+返回绘制结束之后的view。
 
-                **例子**
+**例子**
 
-                ```lua
+```lua
                 function onClick(tab)
                     gg.alert(tostring(tab))
                 end
@@ -1020,31 +1021,31 @@ userdata viewList ( table items, function flushed )
                 { { from = -100 , to = 300 , value = 50 , size = 5 , tickVisible = false } ,
                     { from = 10 , to = 200 , value = { 20 , 100 , 180 , 200 } } ,2 ,{ 1 , 3 } ,{ '苹果' , '橘子' , '草莓' , '香蕉' , '1315' , '1319' , '1514' , '1596' } ,{ '苹果' , '橘子' , '草莓' , '香蕉' , '1315' , '1319' , '1514' , '1596' } ,'123' ,'456' ,true ,false ,'/storage/emulated/0/AppProjects/' ,'/storage/emulated/0/AppProjects/最新的luaj.zip'} ,{ "slider" , "range_slider" , 'number' , "chip" , 'text' , "chip" , "number" , 'text' , 'checkbox' , 'checkbox' , 'path' , 'file' } , onClick )
                 gg.mainTabs ( '输入框' , view , false )
-                ```
+```
 
-                ## gg.viewSwitch
+## gg.viewSwitch
 
-                说明
+说明
 
-                userdata viewSwitch ( table items )
+userdata viewSwitch ( table items )
 
-                一、解释：
+一、解释：
 
-                绘制一个开关列表的view
+绘制一个开关列表的view
 
-                二、调用参数：
+二、调用参数：
 
-                ▪items▪
+▪items▪
 
-                包涵要显示的开关列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、open（开关开启后的回调函数，必须）、close（开关关闭后的回调函数，必需）、isCheck（开关默认的状态(true默认开启，false关闭)，必须）。
+包涵要显示的开关列表，每个元素都是一个包含以下字段的表：title（字符串标题，必需）、open（开关开启后的回调函数，必须）、close（开关关闭后的回调函数，必需）、isCheck（开关默认的状态(true默认开启，false关闭)，必须）。
 
-                三、返回值：
+三、返回值：
 
-                返回绘制结束之后的view。
+返回绘制结束之后的view。
 
-                **例子**
+**例子**
 
-                ```lua
+```lua
                 function switchAp ( Table , tabTitle )
                     -- 开关封装
                     local list = { }
@@ -1079,79 +1080,80 @@ userdata viewList ( table items, function flushed )
                             , true
                         }
                     } , "开关视图" )
-                    ```
+```
 
-                    ## gg.viewText
+## gg.viewText
 
-                    说明
+说明
 
-                    userdata viewText ( string text )
+userdata viewText ( string text )
 
-                    一、解释：
+一、解释：
 
-                    绘制一个长文本的view
+绘制一个长文本的view
 
-                    二、调用参数：
+二、调用参数：
 
-                    ▪text▪
+▪text▪
 
-                    需要显示的字符串文本。
+需要显示的字符串文本。
 
-                    三、返回值：
+三、返回值：
 
-                    返回绘制结束之后的view。
+返回绘制结束之后的view。
 
-                    **例子**
+**例子**
 
-                    ```lua
+```lua
                     local view = gg.viewText ( '--------{?天启全功能脚本公告:#FFFFFFFF:1.5}--------{?2023.04.19:#FF486AFF:1:0:true}更新日志适配造梦13.4.1版本({?4399:#FFF86363:1:1:true})适配造梦13.4.1版本(渠道服)2023.04.17更新日志适配造梦13.4.0版本(4399)2023.03.26更新日志优化人物无敌(免疫debuff伤害)适配造梦13.3.4(4399)2023.03.23更新日志更换新的人物无敌功能(更无敌)修复了称号秒杀直接把属性加在面板上的问题降低了全局秒杀的伤害(当然，建议还是不要使用)2023.03.18更新日志新增奇闻录激活图鉴功能(装备功能>>开奇闻录)新增五中一键录入全角色白装(装备功能>>无中功能>>一键录入)移除全ID查询功能(目前有动态检索功能可以直接检索物品查ID)优化悬浮窗体验修复物理功能无限法宝无效问题2023.03.17更新日志新增雇佣功能(角色功能>>其他功能)[该功能还未完善]适配造梦13.3.2版本(4399)适配造梦13.3.2版本(渠道服)适配新版防闪(看见此公告请快速更新游戏)' )
                     gg.mainTabs( '脚本公告' , view , false , window)
+```
+
+## gg.viewThreadList
+
+说明
+
+**例子**
+
+```lua
+gg.viewThreadList()
+```
+
+## gg.viewTouch
+
+说明
+
+**例子**
+
+```lua
+gg.viewTouch()
                     ```
 
-                    ## gg.viewThreadList
+## gg.viewWeb
 
-                    说明
+说明
 
-                    **例子**
+userdata viewWeb ( string url )
 
-                    ```lua
-                    gg.viewThreadList()
-                    ```
+一、解释：
 
-                    ## gg.viewTouch
+绘制一个web的view
 
-                    说明
+二、调用参数：
 
-                    **例子**
+▪url▪
 
-                    ```lua
-                    gg.viewTouch()
-                    ```
+网址链接。
 
-                    ## gg.viewWeb
+三、返回值：
 
-                    说明
-
-                    userdata viewWeb ( string url )
-
-                    一、解释：
-
-                    绘制一个web的view
-
-                    二、调用参数：
-
-                    ▪url▪
-
-                    网址链接。
-
-                    三、返回值：
-
-                    返回绘制结束之后的view。
+返回绘制结束之后的view。
 
 
-                    **例子**
+**例子**
 
-                    ```lua
-                    local view = gg.viewWeb( 'https://tianqix.gitee.io')
-                    gg.mainTabs( '广告页' , view , false , window)
-                    ```
+```lua
+local view = gg.viewWeb( 'https://tianqix.gitee.io')
+gg.mainTabs( '广告页' , view , false , window)
+
+```
