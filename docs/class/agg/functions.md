@@ -352,7 +352,7 @@ function mainAP(Table, func, tabTitle)
             { "菜单2" , "菜单副标题2" , onclick,2 } ,
             { "菜单3" , "菜单副标题3" , onclick,3 } ,
         } , flushed , "主菜单" )
-        ```
+```
 
 ## gg.viewMultiChoice
 
@@ -931,7 +931,7 @@ function mainAP(Table, func, tabTitle)
             { "菜单2" , "菜单副标题2" , onclick,2 } ,
             { "菜单3" , "菜单副标题3" , onclick,3 } ,
         } , flushed , "主菜单" )
-        ```
+```
 
 ## gg.viewMultiChoice
 
