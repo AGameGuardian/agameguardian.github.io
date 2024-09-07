@@ -7,8 +7,8 @@ hero:
   tagline: 简洁 · 优化 · 高效
   actions:
     - theme: brand
-      text: 函数列表
-      link: /class/gg/functions
+      text: 快速了解
+      link: /class/快速了解/AGG是什么
 
     - theme: alt
       text: Github
