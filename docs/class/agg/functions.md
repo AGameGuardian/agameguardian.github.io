@@ -96,10 +96,39 @@ gg.getApp()
 
 说明
 
+table getClassMethods ( string class )
+
+一、解释：
+
+获取指定类(已经加载的类)的所有公共方法以及字段
+
+二、调用参数：
+
+▪class▪
+
+完整的类名
+
+三、返回值：
+
+返回包含指定类的方法字段表或带错误的字符串。
+
 **例子**
 
 ```lua
-gg.getClassMethods()
+local wind = gg.getClassMethods("android.ext.MainService")--类名需要完整的路径
+for k , v in pairs(wind) do
+	local paramter = { }
+	for n , t in pairs(v.parameters) do
+		local p_name = t.parameter_name--方法参数的名字
+		local p_type = t.parameter_type--方法参数的类型
+		local y_p_n = p_type
+		table.insert(paramter, y_p_n.." "..p_name)
+	end
+	local up_par = table.concat(paramter , ", ")
+	local r_t = v.return_type--方法的返回值
+	local text = r_t.." "..v.method_name.."("..up_par..")"
+	print(text)
+end
 ```
 
 ## gg.getWM
@@ -116,20 +145,54 @@ gg.getWM()
 
 说明
 
+bool isTabVisible ()
+
+一、解释：
+
+检查Tab悬浮窗是否显示
+
+二、调用参数：
+
+无
+
+三、返回值：
+
+如果tab悬浮窗打开，则返回true，否则返回false
+
 **例子**
 
 ```lua
-gg.isTabVisible()
+local view = gg.viewText("一段文字")
+gg.mainTabs("tab标题", view, false)
+gg.setTabVisible(false)--隐藏
+gg.alert("是否显示"..tostring(gg.isTabVisible()))
+gg.sleep(2000)
+gg.setTabVisible(true)--延迟两秒后显示
+gg.alert("是否显示"..tostring(gg.isTabVisible()))
 ```
 
 ## gg.isVPN
 
 说明
 
+bool isVPN ()
+
+一、解释：
+
+检查当前设备是否开启网络代理(VPN)
+
+二、调用参数：
+
+无
+
+三、返回值：
+
+如果VPN打开，则返回true，否则返回false
+
 **例子**
 
 ```lua
-gg.isVPN()
+print(gg.isVPN())
 ```
 
 ## gg.loadClass
@@ -247,20 +310,53 @@ gg.mainWeb()
 
 说明
 
+mixed notification ( string title, string message )
+
+一、解释：调用系统通知显示指定文本(需要通知权限)
+
+二、调用参数：
+
+▪title▪
+
+显示的标题
+▪message▪
+
+显示的具体内容
+
+三、返回值：
+
+无。
+
 **例子**
 
 ```lua
-gg.notification()
+gg.notification("AGG通知","醒醒，该起床了！")
 ```
 
 ## gg.setProcessInfo
 
 说明
 
+mixed setProcessInfo ( string processName )
+
+一、解释：
+
+设置当前进程(应用名)
+
+二、调用参数：
+  
+ ▪processName▪
+  
+应用的进程名称
+  
+三、返回值：
+
+返回true或false。
+
 **例子**
 
 ```lua
-gg.setProcessInfo()
+gg.setProcessInfo("造梦西游OL")
 ```
 
 ## gg.setTabVisible
@@ -548,7 +644,7 @@ gg.viewThreadList()
 
 ```lua
 gg.viewTouch()
-                    ```
+```
 
 ## gg.viewWeb
 
