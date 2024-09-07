@@ -14,6 +14,10 @@ hero:
       text: Github
       link: https://github.com/AGameGuardian
 
+    - theme: alt
+      text: 问题反馈
+      link: https://github.com/AGameGuardian/feedback
+
 features:
   - icon: 📜
     title: 什么是AGG
