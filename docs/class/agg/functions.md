@@ -564,39 +564,49 @@ userdata viewSwitch ( table items )
 
 ```lua
 function switchAp ( Table , tabTitle )
-    -- 开关封装
-    local list = { }
-    for ( k , v in pairs ( Table ) ) {
-            table.insert ( list , { title = v [ 1 ] , open = v [ 2 ] , close = v [ 3 ] , isCheck = v [ 4 ] } )
-        }
-        local swit = gg.viewSwitch ( list )
-        gg.mainTabs ( tabTitle , swit , false , window
-    end
-    switchAp ( {
-        { '人物无敌1(加载动画)' , function ( )
-                gg.sleep ( 3000 ) -- 模拟耗时
-                gg.toast ( '人物无敌1开启' )
-            end, function ( )
-                gg.sleep ( 3000 ) -- 模拟耗时
-                gg.toast ( '人物无敌1关闭' )
-            end
-        } ,
-        { '{?人物:#FFF86363:1:1:true}无敌2' , function ( )
-                gg.toast ( '人物无敌2开启' )
-            end
-            , function ( )
-                gg.toast ( '人物无敌2关闭' )
-            end
-            , true
-        } ,
-        { '人物无敌3' , function ( )
-                gg.toast ( '人物无敌3开启' )
-            end\n\n\t\t\t, function ( )
-                gg.toast ( '人物无敌3关闭' )
-            end
-            , true
-        }
-    } , "开关视图" )
+	-- 开关封装
+	local list = { }
+	for k , v in pairs ( Table ) do
+		table.insert ( list , { title = v [ 1 ] , func = v [ 2 ] , isCheck = v [ 3 ] } )
+	end
+	local swit = gg.viewSwitch ( list )
+	gg.mainTabs ( tabTitle , swit , false , window )
+    return list
+end
+switchAp ( {
+		{ '人物无敌1(加载动画)' , function ( isCheck )
+                if isCheck then
+				    gg.sleep ( 3000 ) -- 模拟耗时
+				    gg.toast ( '人物无敌1开启' )
+                else
+                    gg.sleep ( 3000 ) 
+                    gg.toast ( '人物无敌1关闭' )
+                end
+			end
+
+			
+
+		} ,
+		{ '{?人物:#FFF86363:1:1:true}无敌2' , function ( isCheck )
+                if isCheck then
+				    gg.toast ( '人物无敌2开启' )
+                else
+                    gg.toast ( '人物无敌2关闭' )
+                end
+			end
+
+		
+		} ,
+		{ '人物无敌3' , function ( isCheck )
+                if isCheck then
+				    gg.toast ( '人物无敌3开启' )
+                else
+                    gg.toast ( '人物无敌3开启' )
+			end
+
+			
+		} 
+	} , "开关视图" )
 ```
 
 ## gg.viewText
