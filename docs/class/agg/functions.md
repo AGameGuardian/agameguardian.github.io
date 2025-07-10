@@ -205,14 +205,14 @@ print(gg.isVPN())
 gg.loadClass()
 ```
 
-## gg.luaThread
+## gg.thread
 
 说明
 
 **例子**
 
 ```lua
-gg.luaThread()
+gg.thread ( "线程任务" , function() end )
 ```
 
 ## gg.mainLua
